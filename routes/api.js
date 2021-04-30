@@ -1,12 +1,9 @@
 const router = require("express").Router();
 const db = require("../models");
 
-
 router.get("api/workouts", (req, res) => {
-  console.log(req)
   db.Workout.find({})
     .then(dbWorkout => {
-      console.log(res.json(dbWorkout))
       res.json(dbWorkout)
     })
     .catch(err => {
@@ -14,19 +11,8 @@ router.get("api/workouts", (req, res) => {
     })
 })
 
-router.post("/api/workouts", (req, res) => {
-  db.Workout.create({})
-    .then(dbWorkout => {
-      console.log(res.json(dbWorkout))
-      res.json(dbWorkout);
-    })
-    .catch(err => {
-      res.status(400).json(err);
-    });
-});
-
 //api/workouts put
-router.put("/api/workouts/:id", ({body, params}, res) => {
+router.put("/api/workouts/:id", ({params, body}, res) => {
   db.Workout.updateOne({ _id: params.id },
     { $push: {
         exercises: { body }
@@ -34,7 +20,6 @@ router.put("/api/workouts/:id", ({body, params}, res) => {
     }
   )
     .then(dbWorkout => {
-      console.log(res.json(dbWorkout))
       res.json(dbWorkout);
     })
     .catch(err => {
@@ -42,9 +27,26 @@ router.put("/api/workouts/:id", ({body, params}, res) => {
     });
 });
 
-//NEED
-// /api/workouts
 
-//get api/workouts/range
+router.post("/api/workouts", (req, res) => {
+  db.Workout.create(req.body)
+    .then(dbWorkout => {
+      res.json(dbWorkout);
+    })
+    .catch(err => {
+      res.status(400).json(err);
+    });
+});
+
+
+router.get("/api/workouts/range", ({body, params}, res) => {
+  db.Workout.find({})
+    .then(dbWorkout => {
+      res.json(dbWorkout)
+    })
+    .catch(err => {
+      res.status(400).json(err);
+    })
+})
 
  module.exports = router

@@ -28,11 +28,11 @@ const WorkoutSchema = new Schema({
                 type: Number,
             },
 
-            reps: {
+            sets: {
                 type: Number,
             },
 
-            sets: {
+            reps: {
                 type: Number,
             },
         }
