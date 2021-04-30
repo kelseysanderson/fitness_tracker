@@ -11,19 +11,19 @@ const WorkoutSchema = new Schema({
 
     exercises: [
         {
+            //type of workout e.g. cardio
             type: {
                 type: String,
-                
             },
-
+            //name of workout e.g. jogging
             name: {
                 type: String,
             },
-
+            //duration(in minutes)
             duration: {
                 type: Number,
             },
-
+            //weight (pounds)
             weight: {
                 type: Number,
             },
@@ -38,6 +38,8 @@ const WorkoutSchema = new Schema({
         }
     ]
 });
+
+//add custom methods for stats page?
 
 const Workout = mongoose.model("Workout", WorkoutSchema);
 
