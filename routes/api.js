@@ -2,20 +2,33 @@ const router = require("express").Router();
 const db = require("../models");
 
 router.get("/api/workouts", (req, res) => {
-  db.Workout.find({})
+  db.Workout.findOne({}).sort({ day: -1 })
     .then(dbWorkout => {
-      res.json(dbWorkout);
+      dbWorkout.totalDuration = dbWorkout.exercises.reduce(function (a, b) {
+        return { duration: a.duration + b.duration };
+      }, { duration: 0} ).duration
+
+      res.json([dbWorkout]);
     })
     .catch(err => {
+      console.log(err)
       res.status(400).json(err);
     });
 })
 
 router.get("/api/workouts/range", (req, res) => {
-  db.Workout.find({})
-  .then((dbWorkout) => {
-    res.json(dbWorkout);
+  db.Workout.find({}).limit(7).sort( { day: -1 } )
+  .then((dbWorkouts) => {
+
+    dbWorkouts.forEach(workout => {
+      workout.totalDuration = workout.exercises.reduce(function (a, b) {
+        return { duration: a.duration + b.duration };
+      }, { duration: 0} ).duration
+    })
+
+    res.json(dbWorkouts);
   }).catch(err => {
+    console.log(err)
     res.status(400).json(err);
   });
 });

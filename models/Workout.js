@@ -8,7 +8,6 @@ const WorkoutSchema = new Schema({
         default: Date.now,
     },
 
-
     //exercise array 
     exercises: [
         {
@@ -48,11 +47,15 @@ const WorkoutSchema = new Schema({
             },
         }
     ],
+    totalDuration: {
+        type: Number,
+        default: 0
+    }
 },
-    // {
-    //     toObject: { virtuals: true },
-    //     toJSON: { virtuals: true },
-    // }
+    {
+        toObject: { virtuals: true },
+        toJSON: { virtuals: true },
+    }
 );
 
 // const virtual = WorkoutSchema.virtual('totalduration');
