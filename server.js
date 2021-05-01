@@ -19,7 +19,7 @@ const config = {
   useFindAndModify: false 
 }
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitness_tracker", config);
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", config);
 
 // require routse.
 app.use(require("./routes/api"));
