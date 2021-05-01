@@ -38,8 +38,10 @@ router.put("/api/workouts/:id", (req, res) => {
     { 
       _id: req.params.id 
     }, 
-      { 
-        exercises: req.body 
+      {
+        $push:{ 
+          exercises: req.body 
+        }
       }
   ).then((dbWorkout) => {
     res.json(dbWorkout);
