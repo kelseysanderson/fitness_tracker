@@ -15,7 +15,7 @@ An app that allows users to create and track workouts. They can log multiple exe
 
 
 ## Installation
-To install, clone this from my repository by entering git clone https://github.com/kelseysanderson/fitness_tracker.git in a terminal in a new directory. Then, when successfully cloned, type `npm install` in the terminal within that directory.
+To install, clone this from my repository by entering `git clone https://github.com/kelseysanderson/fitness_tracker.git` in a terminal in a new directory. Then, when successfully cloned, type `npm install` in the terminal within that directory.
 
 ## Usage
 Following installation, open the terminal in the new directory and enter `npm run watch` to start the server. Then open your browser and type in localhost:3000 into the address bar in a browser. The live URL can also be found below.
